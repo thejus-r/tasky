@@ -32,18 +32,32 @@ export function getWeekDays(start: Date): Date[] {
 
 
 export function getWeekDay(date: Date): String {
-    return fmtDay(date.toLocaleDateString(locale, { weekday: 'long' }));
-}
-
-// Formats the string to First three letters and uppercase them.
-// eg: Saturday => SAT
-// args: String
-function fmtDay(day: String): String {
-    return day.slice(0, 3).toUpperCase()
+    return date.toLocaleDateString(locale, { weekday: 'short' });
 }
 
 function weekMoment(date: Date, add: number = 1) {
     const next = new Date(date);
     next.setDate(date.getDate() - (date.getDay() || 7) + add)
     return next;
+}
+
+// Type for the CalendarView, that will be used as a context
+export type CalendarView = {
+    active: Date,
+    current: Date,
+    weekIndex: number,
+    startOfWeek: Date,
+    endOfWeek: Date
+}
+
+export function getCalendraView(active: Date, startOfWeek: Date | null): CalendarView {
+    startOfWeek = startOfWeek ?? weekMoment(active)
+    const current = new Date()
+    return {
+        active,
+        current,
+        weekIndex: getWeekIndex(startOfWeek),
+        startOfWeek,
+        endOfWeek: weekMoment(current, 7)
+    }
 }

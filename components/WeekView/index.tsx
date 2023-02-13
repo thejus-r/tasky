@@ -1,3 +1,6 @@
+"use-client";
+
+import { locale } from "@/config/locale";
 import {
   getWeekDay,
   getWeekDays,
@@ -5,18 +8,39 @@ import {
   isSameDate,
 } from "@/utils/DateUtils";
 
-type Day = {
-  day: "SUN" | "MON" | "TUE" | "WED" | "THU" | "FRI" | "SAT";
-  date: Number;
-};
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
 export default function WeekView() {
-  let nextDate = new Date();
-  const days = getWeekDays(nextDate);
-  console.log(nextDate);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const days = getWeekDays(currentDate);
+
+  const prevWeek = () => {
+    let newDate = new Date();
+    newDate.setDate(newDate.getDate() - 1);
+    setCurrentDate(newDate);
+  };
+
+  const nextWeek = () => {
+    let newDate = new Date();
+    newDate.setDate(newDate.getDate() + 1);
+    setCurrentDate(newDate);
+  };
   return (
     <>
-      <h3>{getWeekIndex(nextDate)}</h3>
+      <div className="week-view-header">
+        <h3 className="current-date">
+          {new Date().toLocaleDateString(locale, { dateStyle: "medium" })}
+        </h3>
+        <div className="changeWeekBtn-container">
+          <button onClick={prevWeek} className="changeWeekBtn">
+            <ChevronLeftIcon className="icon" />
+          </button>
+          <button onClick={nextWeek} className="changeWeekBtn">
+            <ChevronRightIcon className="icon" />
+          </button>
+        </div>
+      </div>
       <div className="week-view">
         {days.map((day, index) => {
           return <Day key={index} date={day} />;
