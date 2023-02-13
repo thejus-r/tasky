@@ -1,0 +1,14 @@
+@use "../abstract/index" as *;
+.button {
+  background-color: $tertiarySurface;
+  color: $tertiaryText;
+  padding: 2rem;
+  border-radius: 9999px;
+
+  &:hover {
+    scale: 1.2;
+  }
+  &:focus {
+    scale: 1.2;
+  }
+}

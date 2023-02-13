@@ -1,0 +1,5 @@
+@use "./colors";
+body {
+  font-family: sans-serif;
+  color: colors.$primaryText;
+}
