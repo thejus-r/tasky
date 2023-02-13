@@ -1,8 +1,12 @@
 @use "../abstract/index" as *;
 .fab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   width: 96px;
   height: 96px;
+  text-decoration: none;
   background-color: $tertiarySurface;
   color: $tertiaryText;
   border-radius: 2rem;

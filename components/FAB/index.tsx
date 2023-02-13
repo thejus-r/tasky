@@ -1,13 +1,9 @@
-"use client";
+import Link from "next/link";
 
-type FABProps = {
-  handleClick: () => void;
-};
-
-export default function FAB({ handleClick }: FABProps) {
+export default function FAB() {
   return (
-    <button onClick={handleClick} className="fab">
+    <Link href={"/createTask"} className="fab">
       +
-    </button>
+    </Link>
   );
 }
