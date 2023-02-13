@@ -1,18 +1,26 @@
-import './globals.css'
+"use client";
+
+import FAB from "@/components/FAB";
+import "../styles/main.scss";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const handleClick = () => {
+    console.log("fab clicked");
+  };
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body className="app">
+        <main className="app-container">
+          <h1 className="app-title">Tasks</h1>
+          {children}
+          <FAB handleClick={handleClick} />
+        </main>
+      </body>
     </html>
-  )
+  );
 }
