@@ -1,9 +1,8 @@
 import { locale } from "@/config/locale"
 
-
-export function isSameDate(date: Date): boolean {
-    const today = new Date()
-    return date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()
+// Checks if same date
+export function isSameDate(date1: Date, date2: Date = new Date()): boolean {
+    return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate()
 }
 
 // Return a week index as a number from the date passed as an argument.
@@ -60,4 +59,8 @@ export function getCalendraView(active: Date, startOfWeek: Date | null): Calenda
         startOfWeek,
         endOfWeek: weekMoment(current, 7)
     }
+}
+
+export function fmtDateAndTime(date: string, time: string): Date {
+    return new Date(date + "T" + time);
 }
