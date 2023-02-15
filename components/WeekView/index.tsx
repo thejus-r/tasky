@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 

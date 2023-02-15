@@ -1,27 +1,15 @@
-"use client";
-
 import WeekView from "@/components/WeekView";
 
-type Task = {
-  title: String;
-  desc: String;
-  time: String;
-};
+import prisma from "@/lib/prisma";
+import { Task } from "@prisma/client";
 
-const tasks: Task[] = [
-  {
-    title: "Daily Stand-up",
-    desc: "To discuss with team all work processes for the day.",
-    time: "9 AM - 10:30 AM",
-  },
-  {
-    title: "New UI-Kit for the app",
-    desc: "To collect all assets that contains a set of design elements such as components.",
-    time: "11:20 AM - 12:30 PM",
-  },
-];
+async function getData() {
+  const res = await prisma.task.findMany();
+  return res;
+}
 
-export default function Home() {
+export default async function Home() {
+  const tasks = await getData();
   return (
     <>
       <WeekView />
@@ -32,19 +20,22 @@ export default function Home() {
   );
 }
 
-interface CardProps {
-  title: String;
-  desc: String;
-  time: String;
-}
-
-function Card({ title, desc, time }: CardProps) {
+function Card({ title, desc, start, end }: Task) {
   return (
     <>
       <div className="task-card">
         <h3 className="title">{title}</h3>
         <p className="desc">{desc}</p>
-        <p className="time">{time}</p>
+        <p className="time">
+          {start
+            .toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+            .toLocaleUpperCase()}
+          {end &&
+            " - " +
+              end
+                ?.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+                .toLocaleUpperCase()}
+        </p>
       </div>
     </>
   );
