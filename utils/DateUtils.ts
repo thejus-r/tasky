@@ -35,7 +35,7 @@ export function getWeekDay(date: Date): String {
     return date.toLocaleDateString(locale, { weekday: 'short' });
 }
 
-function weekMoment(date: Date, add: number = 1) {
+export function weekMoment(date: Date, add: number = 1) {
     const next = new Date(date);
     next.setDate(date.getDate() - (date.getDay() || 7) + add)
     return next;

@@ -1,42 +1,49 @@
 "use-client";
-
-import { locale } from "@/config/locale";
-import {
-  getWeekDay,
-  getWeekDays,
-  getWeekIndex,
-  isSameDate,
-} from "@/utils/DateUtils";
-
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
+import { locale } from "@/config/locale";
+import {
+  addDays,
+  getCalendraView,
+  getWeekDay,
+  getWeekDays,
+  isSameDate,
+} from "@/utils/DateUtils";
+
 export default function WeekView() {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const days = getWeekDays(currentDate);
+  const current = new Date();
+  const [active, setActive] = useState(current);
+  const [calendraView, setCalendraView] = useState(
+    getCalendraView(active, null)
+  );
 
-  const prevWeek = () => {
-    let newDate = new Date();
-    newDate.setDate(newDate.getDate() - 1);
-    setCurrentDate(newDate);
-  };
+  // function that resets weekView to current week
+  function resetToThisWeek() {
+    let thisWeek = getCalendraView(active, null);
+    setCalendraView(thisWeek);
+  }
 
-  const nextWeek = () => {
-    let newDate = new Date();
-    newDate.setDate(newDate.getDate() + 1);
-    setCurrentDate(newDate);
-  };
+  // Changes to prev or next week
+  function changeWeek(add: number): void {
+    let newWeek = getCalendraView(
+      active,
+      addDays(calendraView.startOfWeek, add)
+    );
+    setCalendraView(newWeek);
+  }
+  const days = getWeekDays(calendraView.startOfWeek);
   return (
     <>
       <div className="week-view-header">
-        <h3 className="current-date">
+        <button onClick={() => resetToThisWeek()} className="current-date">
           {new Date().toLocaleDateString(locale, { dateStyle: "medium" })}
-        </h3>
+        </button>
         <div className="changeWeekBtn-container">
-          <button onClick={prevWeek} className="changeWeekBtn">
+          <button onClick={() => changeWeek(-7)} className="changeWeekBtn">
             <ChevronLeftIcon className="icon" />
           </button>
-          <button onClick={nextWeek} className="changeWeekBtn">
+          <button onClick={() => changeWeek(7)} className="changeWeekBtn">
             <ChevronRightIcon className="icon" />
           </button>
         </div>
