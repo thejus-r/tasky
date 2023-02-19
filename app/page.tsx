@@ -1,3 +1,4 @@
+import TasksView from "@/components/TasksView";
 import WeekView from "@/components/WeekView";
 
 import prisma from "@/lib/prisma";
@@ -13,10 +14,8 @@ export default async function Home() {
   return (
     <>
       <WeekView />
-      {tasks.map((task, index) => {
-        return <Card key={index} {...task}></Card>;
-      })}
-    </>
+      <TasksView/>  
+   </>
   );
 }
 
