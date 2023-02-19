@@ -1,24 +1,17 @@
-"use client";
-
-import FAB from "@/components/FAB";
-import "../styles/main.scss";
+import "./tailwind.css";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const handleClick = () => {
-    console.log("fab clicked");
-  };
   return (
     <html lang="en">
       <head />
-      <body className="app">
-        <main className="app-container">
-          <h1 className="app-title">Tasks</h1>
-          {children}
-          <FAB handleClick={handleClick} />
+      <body className="bg-stone-900 text-stone-50  min-h-screen w-full p-6 ">
+        <main className="w-full flex flex-col gap-4">
+          <h1 className="text-2xl font-semibold">Tasks</h1>
+          {children}      
         </main>
       </body>
     </html>

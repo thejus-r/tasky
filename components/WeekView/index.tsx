@@ -35,20 +35,21 @@ export default function WeekView() {
   const days = getWeekDays(calendraView.startOfWeek);
   return (
     <>
-      <div className="week-view-header">
-        <button onClick={() => resetToThisWeek()} className="current-date">
+      <div className="flex justify-between">
+
+        <button onClick={() => resetToThisWeek()} className="text-lg font-semibold px-2.5 py-1.5 border-2 rounded-xl bg-stone-800/25 hover:brightness-125 transition-all duration-500 border-stone-800">
           {new Date().toLocaleDateString(locale, { dateStyle: "medium" })}
         </button>
-        <div className="changeWeekBtn-container">
-          <button onClick={() => changeWeek(-7)} className="changeWeekBtn">
-            <ChevronLeftIcon className="icon" />
+        <div className="flex gap-4">
+          <button onClick={() => changeWeek(-7)}>
+            <ChevronLeftIcon className="stroke-stone-50 h-8 w-8" />
           </button>
-          <button onClick={() => changeWeek(7)} className="changeWeekBtn">
-            <ChevronRightIcon className="icon" />
+          <button onClick={() => changeWeek(7)} >
+            <ChevronRightIcon className="stroke-stone-100 h-8 w-8" />
           </button>
         </div>
       </div>
-      <div className="week-view">
+      <div className="flex gap-2 justify-between w-full">
         {days.map((day, index) => {
           return <Day key={index} date={day} />;
         })}
@@ -65,10 +66,10 @@ type DayProps = {
 function Day({ isActive = true, date }: DayProps) {
   const isToday = isSameDate(date);
   return (
-    <div className={`dayBlock ${false ? "active" : ""}`}>
-      <p className="day">{getWeekDay(date)}</p>
-      <p className="date">{date.getDate()}</p>
-      {isToday && <div className="indicator"></div>}
-    </div>
+<button className={`w-full flex justify-center relative items-center flex-col text-center border-2 border-stone-800 hover:brightness-125 transition-all duration-500 bg-stone-800/25 rounded-xl h-32  ${isActive ? "" : "bg-stone-700"}`}>
+      <p className="font-bold text-stone-300 ">{getWeekDay(date)}</p>
+      <p className="text-2xl font-bold">{date.getDate()}</p>
+      {isToday && <div className="absolute h-2 w-2 bottom-3 bg-green-500 rounded-full animate-pulse"></div>}
+    </button>
   );
 }
