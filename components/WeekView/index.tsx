@@ -10,10 +10,11 @@ import {
   getWeekDays,
   isSameDate,
 } from "@/utils/DateUtils";
+import useWeekStore from "@/stores/weekStore";
 
 export default function WeekView() {
   const current = new Date();
-  const [active, setActive] = useState(current);
+  const active = useWeekStore(state=> state.active)
   const [calendraView, setCalendraView] = useState(
     getCalendraView(active, null)
   );
@@ -33,6 +34,7 @@ export default function WeekView() {
     setCalendraView(newWeek);
   }
   const days = getWeekDays(calendraView.startOfWeek);
+
   return (
     <>
       <div className="flex justify-between">
@@ -51,7 +53,7 @@ export default function WeekView() {
       </div>
       <div className="flex gap-2 justify-between w-full">
         {days.map((day, index) => {
-          return <Day key={index} date={day} />;
+          return <Day key={index} date={day} isActive={day.getDate() === active.getDate()} />;
         })}
       </div>
     </>
@@ -63,10 +65,11 @@ type DayProps = {
   date: Date;
 };
 
-function Day({ isActive = true, date }: DayProps) {
+function Day({ isActive, date }: DayProps) {
+  const setActive = useWeekStore(state=> state.setActive)
   const isToday = isSameDate(date);
   return (
-<button className={`w-full flex justify-center relative items-center flex-col text-center border-2 border-stone-800 hover:brightness-125 transition-all duration-500 bg-stone-800/25 rounded-xl h-32  ${isActive ? "" : "bg-stone-700"}`}>
+<button onClick={()=>setActive(date)} className={`w-full flex justify-center relative items-center flex-col text-center border-2 border-stone-800 hover:brightness-125 transition-all duration-500 bg-stone-800/25 rounded-xl h-32  ${isActive ? "bg-green-900 border-green-600" : ""}`}>
       <p className="font-bold text-stone-300 ">{getWeekDay(date)}</p>
       <p className="text-2xl font-bold">{date.getDate()}</p>
       {isToday && <div className="absolute h-2 w-2 bottom-3 bg-green-500 rounded-full animate-pulse"></div>}
