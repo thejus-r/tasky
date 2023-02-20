@@ -1,12 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
-}
+import prisma from '@/lib/prisma';
 
-export default function handler(
+
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name: 'John Doe' })
+
+  if(req.method === "POST") {
+    const {title, desc, date} = req.body
+    const task = await prisma.task.create({
+      data: {
+        title,
+        desc,
+        date
+      }
+    })
+    res.status(200).json(task)
+  }
+  else {
+    res.status(401).json({message: "Error!"});
+  }
 }

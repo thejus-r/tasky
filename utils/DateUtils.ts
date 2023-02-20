@@ -42,8 +42,8 @@ export function weekMoment(date: Date, add: number = 1) {
 
 // Type for the CalendarView, that will be used as a context
 export type CalendarView = {
+    today: Date,
     active: Date,
-    current: Date,
     weekIndex: number,
     startOfWeek: Date,
     endOfWeek: Date
@@ -51,12 +51,12 @@ export type CalendarView = {
 
 export function getCalendraView(active: Date, startOfWeek: Date | null): CalendarView {
     startOfWeek = startOfWeek ?? weekMoment(active)
-    const current = new Date()
+    const today = new Date()
     return {
         active,
-        current,
+        today,
         weekIndex: getWeekIndex(startOfWeek),
         startOfWeek,
-        endOfWeek: weekMoment(current, 7)
+        endOfWeek: weekMoment(today, 7)
     }
 }
