@@ -55,7 +55,7 @@ export default function WeekView() {
           </button>
         </div>
       </div>
-      <div className="flex w-full justify-between gap-2">
+      <div className="flex w-full justify-between gap-1.5 md:gap-2">
         {days.map((day, index) => {
           return (
             <Day
@@ -80,13 +80,13 @@ function Day({ isActive, date }: DayProps) {
   const isToday = isSameDate(date);
   return (
     <button
-      onClick={() => setActive(date)}
-      className={`relative flex h-32 w-full flex-col items-center justify-center rounded-xl border-2 border-stone-800 bg-stone-800/25 text-center transition-all duration-500 hover:brightness-125  ${
-        isActive ? "border-green-600 bg-green-900" : ""
+      onClick={() =>setActive(date)}
+      className={`relative flex h-24 md:h-32 w-full flex-col items-center justify-center rounded-xl border-2 border-stone-800 bg-stone-800/25 text-center transition-all duration-500 hover:brightness-125  ${
+        isActive ? "border-green-600/100 bg-green-900/100" : ""
       }`}
     >
-      <p className="font-bold text-stone-300 ">{getWeekDay(date)}</p>
-      <p className="text-2xl font-bold">{date.getDate()}</p>
+      <p className="font-bold text-xs md:text-base text-stone-300 ">{getWeekDay(date)}</p>
+      <p className="md:text-2xl font-bold">{date.getDate()}</p>
       {isToday && (
         <div className="absolute bottom-3 h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
       )}

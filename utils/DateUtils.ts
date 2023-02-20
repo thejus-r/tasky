@@ -60,7 +60,3 @@ export function getCalendraView(active: Date, startOfWeek: Date | null): Calenda
         endOfWeek: weekMoment(current, 7)
     }
 }
-
-export function fmtDateAndTime(date: string, time: string): Date {
-    return new Date(date + "T" + time);
-}

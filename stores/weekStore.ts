@@ -10,5 +10,4 @@ const useWeekStore = create<WeekState>()((set) => ({
     setActive: (active) => set(()=> ({active: active}))
 }))
 
-
 export default useWeekStore
