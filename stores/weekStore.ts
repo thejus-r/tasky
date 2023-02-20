@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 
 interface WeekState {
-  active: Date
+  active: Date,
   setActive: (active: Date) => void
 }
 
-const useWeekStore = create<WeekState>()((set) => ({
+const useWeekStore = create<WeekState>((set) => ({
     active: new Date(),
-    setActive: (active) => set(()=> ({active: active}))
+    setActive: (active) => set(()=> ({active: active})),
 }))
 
 export default useWeekStore
