@@ -1,14 +1,16 @@
+"use client"
+
 import TasksView from "@/components/TasksView";
 import WeekView from "@/components/WeekView";
+import useWeekStore from "@/stores/weekStore";
 
 import { Task } from "@prisma/client";
 
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
-      <WeekView />
-      <TasksView/>
+      {/* <TasksView/> */}
     </>
   );
 }

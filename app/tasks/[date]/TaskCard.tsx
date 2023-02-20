@@ -1,6 +1,6 @@
 type TaskCardProps = {
   title: String;
-  desc: String;
+  desc: String | null;
 };
 
 export default function TaskCard({

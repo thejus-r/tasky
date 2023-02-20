@@ -2,15 +2,9 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-import { locale } from "@/config/locale";
-import {
-  addDays,
-  getCalendraView,
-  getWeekDay,
-  getWeekDays,
-  isSameDate,
-} from "@/utils/DateUtils";
+import { addDays, getCalendraView, getWeekDays } from "@/utils/DateUtils";
 import useWeekStore from "@/stores/weekStore";
+import DayCard from "./DayCard";
 
 export default function WeekView() {
   const today = new Date();
@@ -19,13 +13,13 @@ export default function WeekView() {
   const [calendraView, setCalendraView] = useState(
     getCalendraView(active, null)
   );
-
   // function that resets weekView to current week
-  function resetToThisWeek() {
+
+  const handleReset = () => {
     let thisWeek = getCalendraView(active, null);
-    setActive(today);
     setCalendraView(thisWeek);
-  }
+    setActive(today);
+  };
 
   // Changes to prev or next week
   function changeWeek(add: number): void {
@@ -41,7 +35,7 @@ export default function WeekView() {
     <>
       <div className="flex justify-between">
         <button
-          onClick={() => resetToThisWeek()}
+          onClick={handleReset}
           className="rounded-xl border-2 border-stone-800 bg-stone-800/25 px-2.5 py-1.5 font-semibold transition-all duration-500 hover:brightness-125 md:text-lg"
         >
           Today
@@ -57,39 +51,9 @@ export default function WeekView() {
       </div>
       <div className="flex w-full justify-between gap-1.5 md:gap-2">
         {days.map((day, index) => {
-          return (
-            <Day
-              key={index}
-              date={day}
-              isActive={day.getDate() === active.getDate()}
-            />
-          );
+          return <DayCard key={index} date={day} />;
         })}
       </div>
     </>
-  );
-}
-
-type DayProps = {
-  isActive?: Boolean;
-  date: Date;
-};
-
-function Day({ isActive, date }: DayProps) {
-  const setActive = useWeekStore((state) => state.setActive);
-  const isToday = isSameDate(date);
-  return (
-    <button
-      onClick={() =>setActive(date)}
-      className={`relative flex h-24 md:h-32 w-full flex-col items-center justify-center rounded-xl border-2 border-stone-800 bg-stone-800/25 text-center transition-all duration-500 hover:brightness-125  ${
-        isActive ? "border-green-600/100 bg-green-900/100" : ""
-      }`}
-    >
-      <p className="font-bold text-xs md:text-base text-stone-300 ">{getWeekDay(date)}</p>
-      <p className="md:text-2xl font-bold">{date.getDate()}</p>
-      {isToday && (
-        <div className="absolute bottom-3 h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-      )}
-    </button>
   );
 }
