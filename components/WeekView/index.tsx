@@ -13,8 +13,9 @@ export default function WeekView() {
   const [calendraView, setCalendraView] = useState(
     getCalendraView(active, null)
   );
-  // function that resets weekView to current week
 
+  console.log(active)
+  // function that resets weekView to current week
   const handleReset = () => {
     let thisWeek = getCalendraView(active, null);
     setCalendraView(thisWeek);

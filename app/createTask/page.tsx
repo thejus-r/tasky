@@ -2,7 +2,6 @@
 
 import useWeekStore from "@/stores/weekStore";
 import { useFormik } from "formik";
-import { json } from "stream/consumers";
 
 type Data = {
   title: string;
@@ -11,7 +10,7 @@ type Data = {
 }
 
 async function createTask(data: Data) {
-  const res = await fetch("http://localhost:3000/api/createTask", {
+  const res = await fetch(`http://localhost:3000/createTask`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
