@@ -1,12 +1,21 @@
-"use client"
-
+import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { use } from "react";
 import TaskCard from "./TaskCard";
 
 async function getTasks(date: string) {
-    const res =  await fetch(`/api/date/${date}`, { cache: 'no-store' })
-    return await res.json()
+  const data = await prisma.task.findMany({
+    where: {
+        date: {
+             lte: `${date}T23:59:00.000Z`,
+             gte: `${date}T00:00:00.000Z`
+        }
+    },
+    orderBy: {
+        createdAt: "desc"
+    }
+})
+    return await data
 }
 
 const TaskPage = ({params}: {params: {date: string}}) => {
