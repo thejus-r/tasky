@@ -10,7 +10,7 @@ type Data = {
 }
 
 async function createTask(data: Data) {
-  const res = await fetch(`${process.env.baseURL}/createTask`, {
+  const res = await fetch(`/createTask`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -41,7 +41,6 @@ export default function CreateTask() {
   return (
     <>
       <h3 className="text-3xl font-bold">Create New Task</h3>
-      {/* <Input/> */}
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col">
           <label htmlFor="">Title</label>
