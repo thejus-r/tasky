@@ -1,3 +1,11 @@
+export const dynamic = "auto",
+dynamicParams = true,
+revalidate = 0,
+fetchCache = 'only-no-store',
+runtime= "nodejs",
+preferredRegion= "auto"
+
+
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { use } from "react";
