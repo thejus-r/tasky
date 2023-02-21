@@ -10,15 +10,13 @@ type Data = {
 }
 
 async function createTask(data: Data) {
-  const res = await fetch(`/createTask`, {
+  await fetch(`${process.env.baseURL}/api/createTask`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res.json())
-    .then((json) => console.log(json));
 }
 
 export default function CreateTask() {
