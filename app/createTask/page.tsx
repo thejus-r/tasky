@@ -10,7 +10,7 @@ type Data = {
 }
 
 async function createTask(data: Data) {
-  const res = await fetch(`http://localhost:3000/createTask`, {
+  const res = await fetch(`${process.env.baseURL}/createTask`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {

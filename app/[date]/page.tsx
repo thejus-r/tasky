@@ -5,7 +5,7 @@ import { use } from "react";
 import TaskCard from "./TaskCard";
 
 async function getTasks(date: string) {
-    const res =  await fetch(`http://localhost:3000/api/date/${date}`, { cache: 'no-store' })
+    const res =  await fetch(`${process.env.baseURL}/api/date/${date}`, { cache: 'no-store' })
     return await res.json()
 }
 
