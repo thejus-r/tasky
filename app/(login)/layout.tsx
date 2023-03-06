@@ -1,8 +1,8 @@
 import '../globals.css'
 
 export const metadata = {
-  title: 'Tasky',
-  description: 'Manage your tasks easily',
+  title: 'Tasky | Login',
+  description: 'Login to continue',
 }
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <p>This layout only for homepage</p>
+       <p>Login layout goes here</p> 
         {children}</body>
     </html>
   )
