@@ -16,12 +16,19 @@ export default function DayTile({
   return (
     <button
       onClick={() => handleClick(date)}
-      className="bg-stone-800 text-white h-20 w-full"
+      className={`rounded-md flex flex-col items-center justify-center relative border-2 text-white h-24 w-full ${
+        isActive
+          ? "bg-green-900/75 border-green-600"
+          : "bg-stone-800 border-stone-700"
+      }`}
     >
-      {getWeekDay(date)}
-      {date.getDate()}
-      {isToday && "Today"}
-      {isActive && "Active"}
+      <p className="text-xs text-stone-400 uppercase font-bold ">
+        {getWeekDay(date)}
+      </p>
+      <p className="text-lg font-semibold">{date.getDate()}</p>
+      {isToday && (
+        <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse absolute bottom-2"></div>
+      )}
     </button>
   );
 }
