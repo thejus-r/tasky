@@ -8,12 +8,6 @@
 # testing
 /coverage
 
-# prisma
-/prisma/dev.db
-
-# env
-.env
-
 # next.js
 /.next/
 /out/

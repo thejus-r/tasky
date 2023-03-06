@@ -1,10 +1,9 @@
 -- CreateTable
 CREATE TABLE "Task" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
-    "desc" TEXT,
-    "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "completed" BOOLEAN NOT NULL DEFAULT false,
+    "description" TEXT,
+    "date" DATETIME NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
