@@ -11,11 +11,11 @@ datasource db {
 }
 
 model Task {
-  id        String   @id @default(uuid())
-  title     String
-  desc      String?
-  date      DateTime @default(now())
-  completed Boolean  @default(false)
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  date        DateTime
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
