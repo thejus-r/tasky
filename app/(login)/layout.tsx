@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className='bg-stone-900 text-white'>
        <p>Login layout goes here</p> 
         {children}</body>
     </html>
