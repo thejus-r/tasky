@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className='bg-stone-900 text-white'>
         <p>This layout only for homepage</p>
         {children}</body>
     </html>
