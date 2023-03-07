@@ -12,18 +12,16 @@ function WeekView() {
     setActive(date);
   }
   return (
-    <div>
-      <div className="flex justify-between gap-2">
-        {weekDays.map((day, index) => (
-          <DayTile
-            handleClick={handleClick}
-            isActive={isSameDate(day, active)}
-            isToday={isSameDate(day)}
-            date={day}
-            key={index}
-          />
-        ))}
-      </div>
+    <div className="flex justify-between gap-2">
+      {weekDays.map((day, index) => (
+        <DayTile
+          handleClick={handleClick}
+          isActive={isSameDate(day, active)}
+          isToday={isSameDate(day)}
+          date={day}
+          key={index}
+        />
+      ))}
     </div>
   );
 }
