@@ -1,11 +1,11 @@
 import TaskView from "@/components/TaskView";
-import WeekView from "@/components/WeekView";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
     <div className="flex flex-col gap-4">
-      <WeekView />
       <TaskView />
+      <Link href={"/create"}>Create new task</Link>
     </div>
   );
 };
