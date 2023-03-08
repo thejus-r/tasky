@@ -1,11 +1,5 @@
-import Header from "./Header";
-
 function TaskView() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <div>tasks goes here</div>;
 }
 
 export default TaskView;

@@ -16,7 +16,7 @@ export default function DayTile({
   return (
     <button
       onClick={() => handleClick(date)}
-      className={`rounded-md flex flex-col items-center transition-all duration-500 justify-center relative border-2 text-white h-24 w-full ${
+      className={`rounded-md flex flex-col items-center transition-all duration-300 justify-center relative border-2 text-white h-24 w-full ${
         isActive
           ? "bg-green-900/75 border-green-600"
           : "bg-stone-800 border-stone-700"
