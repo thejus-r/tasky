@@ -2,13 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./routes/HomePage";
+import Root from "./layouts/root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div className="text-xl font-extrabold text-red-500">Hello World</div>
-    ),
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+    ],
   },
 ]);
 
