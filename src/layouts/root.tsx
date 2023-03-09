@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Root() {
   return (
-    <body className="p-4 bg-stone-900 w-full h-screen">
+    <div className="bg-stone-900 min-h-screen text-white">
+      <Header />
       <Outlet />
-    </body>
+    </div>
   );
 }
