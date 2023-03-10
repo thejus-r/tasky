@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { useMutation } from "react-query";
-import useWeekStore from "../../app/store";
+import useWeekStore from "../../app/weekStore";
 import supabase from "../../lib/database";
 
 interface CreateTaskProps {

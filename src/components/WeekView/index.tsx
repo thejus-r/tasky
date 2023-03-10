@@ -1,4 +1,4 @@
-import useWeekStore from "../../app/store";
+import useWeekStore from "../../app/weekStore";
 import { getWeekDays, isSameDate, weekMoment } from "../../utils/DateUtils";
 import DayTile from "./DayTile";
 import WeekNav from "./WeekNav";

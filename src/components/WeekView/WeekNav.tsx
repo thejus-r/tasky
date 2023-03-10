@@ -1,4 +1,4 @@
-import useWeekStore from "../../app/store";
+import useWeekStore from "../../app/weekStore";
 import { addDays, isSameDate } from "../../utils/DateUtils";
 
 export default function WeekNav() {

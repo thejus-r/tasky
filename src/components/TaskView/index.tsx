@@ -1,7 +1,7 @@
 // imports
 import { useQuery } from "react-query";
 import supabase from "../../lib/database";
-import useWeekStore from "../../app/store";
+import useWeekStore from "../../app/weekStore";
 import TaskList from "./TaskList";
 
 //types
