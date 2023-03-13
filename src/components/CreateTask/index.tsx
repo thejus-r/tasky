@@ -18,10 +18,14 @@ type Task = {
 // Initial value for the form
 
 async function createTask({ title, description, date }: Task) {
+  const response = await supabase.auth.getUser();
+  const user_id = response.data.user?.id;
   const { error } = await supabase
     .from("tasks")
-    .insert({ title, description, date });
-  console.log(error);
+    .insert({ title, description, date, user_id });
+  if (error !== null) {
+    throw error;
+  }
 }
 
 export default function CreateTask({ isOpen, setIsOpen }: CreateTaskProps) {

@@ -12,7 +12,7 @@ function WeekView() {
   }
   return (
     <>
-      <div className="flex px-4 justify-between gap-2">
+      <div className="flex px-4 justify-between gap-1 md:gap-2">
         {weekDays.map((day, index) => (
           <DayTile
             handleClick={handleClick}

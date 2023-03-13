@@ -13,7 +13,7 @@ export default function WeekNav() {
       >
         View Today
       </button>
-      <div className="flex gap-4">
+      <div className="flex gap-2 md:gap-4">
         <button
           onClick={() => setActive(addDays(active, -7))}
           className="h-8 rounded-xl w-12 border-2 border-stone-600 bg-stone-700"
