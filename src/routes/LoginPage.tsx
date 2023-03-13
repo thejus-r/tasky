@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { logIn, setError } from "../bloc/authSlice";
 import { supabaseLogIn } from "../utils/LoginUtils";
@@ -86,6 +86,12 @@ export default function SignUpPage() {
         >
           Login
         </button>
+        <NavLink
+          className="underline underline-offset-2 text-center"
+          to={"/signup"}
+        >
+          Don't have account?
+        </NavLink>
       </form>
     </div>
   );
