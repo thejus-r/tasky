@@ -2,7 +2,7 @@ import { useState } from "react";
 import { produce } from "immer";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { logIn, setError } from "../bloc/authSlice";
-import { redirect, useNavigate } from "react-router-dom";
+import { NavLink, redirect, useNavigate } from "react-router-dom";
 import supabase from "../lib/database";
 import { supabaseSignUp, supabaseLogIn } from "../utils/LoginUtils";
 
@@ -99,6 +99,12 @@ export default function SignUpPage() {
         >
           Create Account
         </button>
+        <NavLink
+          className="underline underline-offset-2 text-center"
+          to={"/login"}
+        >
+          Already have an account?
+        </NavLink>
       </form>
     </div>
   );
