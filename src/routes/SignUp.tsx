@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { produce } from "immer";
-
-import { redirect } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { logIn, setError } from "../bloc/authSlice";
+import { redirect, useNavigate } from "react-router-dom";
 import supabase from "../lib/database";
+import { supabaseSignUp, supabaseLogIn } from "../utils/LoginUtils";
 
 type FormData = {
   email: string;
   password: string;
   confirmPassword: string;
-};
-
-type FormErr = {
-  hasError: boolean;
-  errMessage: string;
 };
 
 const formInitialData: FormData = {
@@ -21,17 +18,23 @@ const formInitialData: FormData = {
   confirmPassword: "",
 };
 
-const formInitialErr: FormErr = {
-  hasError: false,
-  errMessage: "",
-};
-
 export default function SignUpPage() {
   const [formData, setFormData] = useState<FormData>(formInitialData);
-  const [formErr, setFormErr] = useState<FormErr>(formInitialErr);
+  const { hasError, error } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
 
   async function handleSubmit() {
-    // resets the error state
+    try {
+      const response = await supabaseSignUp(formData);
+      if (response !== null) {
+        dispatch(logIn(response));
+        navigate("/");
+      }
+    } catch (err) {
+      dispatch(setError(err as string));
+    }
   }
 
   return (
@@ -89,9 +92,7 @@ export default function SignUpPage() {
             type="password"
           />
         </div>
-        {formErr.hasError && (
-          <p className="text-base text-red-600">{formErr.errMessage}</p>
-        )}
+        {hasError && <p className="text-base text-red-600">{error}</p>}
         <button
           className="mt-4 rounded-lg border-2 border-green-700 bg-green-900/50 py-2.5"
           type="submit"
