@@ -6,7 +6,14 @@ interface LoginProps {
   password: string;
 }
 
-export async function supabaseLogIn({ email, password }: LoginProps) {
+interface SignUpProps {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export async function supabaseLogIn(props: LoginProps) {
+  const { email, password } = props;
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -16,5 +23,20 @@ export async function supabaseLogIn({ email, password }: LoginProps) {
     throw error.message;
   }
 
+  return data.user;
+}
+
+export async function supabaseSignUp(props: SignUpProps) {
+  const { email, password, confirmPassword } = props;
+  if (password !== confirmPassword) {
+    throw "Passwords doesnt match!";
+  }
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  if (error !== null) {
+    throw error.message;
+  }
   return data.user;
 }
