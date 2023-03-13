@@ -40,3 +40,8 @@ export async function supabaseSignUp(props: SignUpProps) {
   }
   return data.user;
 }
+
+export async function supabaseSignOut() {
+  const { error } = await supabase.auth.signOut();
+  console.log(error);
+}
