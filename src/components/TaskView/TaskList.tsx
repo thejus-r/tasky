@@ -6,7 +6,7 @@ export default function TaskList(props: { tasks: Task[] }) {
     return (
       <div className="flex gap-1 flex-col h-96 justify-center items-center">
         <h3 className="text-lg font-semibold">Damn! It's looking empty!</h3>
-        <p className="text-base text-stone-400">
+        <p className="text-sm md:text-base text-stone-400 text-center">
           If you have a planned task make sure you add the task.
         </p>
       </div>
